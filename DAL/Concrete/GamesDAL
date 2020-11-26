@@ -1,0 +1,120 @@
+using DAL.Interfaces;
+using DTO;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+
+namespace DAL.Concrete
+{
+    public class GamesDal : IGamesDal
+    {
+        private string connectionString;
+
+        public GamesDal(string connectionString)
+        {
+            this.connectionString = connectionString;
+        }
+
+        public List<GamesDTO> GamesInGenre(int genreID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand comm = conn.CreateCommand())
+            {
+                conn.Open();
+                comm.CommandText = "select * from Games where GenreID = " + genreID;
+                SqlDataReader reader = comm.ExecuteReader();
+
+                List<GamesDTO> Games = new List<GamesDTO>();
+                while (reader.Read())
+                {
+                    GamesDTO games = new GamesDTO();
+
+                    games.GameID = (int)reader["GameID"];
+                    games.Title = reader["Title"].ToString();
+                    games.DevCompany = reader["DevCompany"].ToString();
+                    games.RelizeDate = (DateTime)reader["RelizeDate"];
+                    games.Price = (decimal)reader["Price"];
+                    Games.Add(games);
+
+                }
+                conn.Close();
+                return Games;
+            }
+        }
+        public List<GamesDTO> Find(string Title, int genreID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand comm = conn.CreateCommand())
+            {
+                conn.Open();
+                comm.CommandText = "select * from Gamess where Title Like '%" + Title + $" and GenreID='{genreID}'";
+                SqlDataReader reader = comm.ExecuteReader();
+
+                List<GamesDTO> Games = new List<GamesDTO>();
+                while (reader.Read())
+                {
+                    GamesDTO games = new GamesDTO();
+
+                    games.GameID = (int)reader["GameID"];
+                    games.Title = reader["Title"].ToString();
+                    games.DevCompany = reader["DevCompany"].ToString();
+                    games.RelizeDate = (DateTime)reader["RelizeDate"];
+                    games.Price = (Decimal)reader["Price"];
+                    Games.Add(games);
+
+                }
+                conn.Close();
+                return Games;
+            }
+        }
+
+        public List<GamesDTO> Sort(string Title, int genreID)
+        {
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand comm = conn.CreateCommand())
+            {
+                conn.Open();
+                comm.CommandText = $"select * from Games where GenreID='{genreID}' order by " + Title;
+                SqlDataReader reader = comm.ExecuteReader();
+
+                List<GamesDTO> Games = new List<GamesDTO>();
+                while (reader.Read())
+                {
+                    GamesDTO games = new GamesDTO();
+
+                    games.GameID = (int)reader["GameID"];
+                    games.Title = reader["Title"].ToString();
+                    games.DevCompany = reader["DevCompany"].ToString();
+                    games.RelizeDate = (DateTime)reader["RelizeDate"];
+                    games.Price = (Decimal)reader["Price"];
+                    Games.Add(games);
+                }
+                conn.Close();
+                return Games;
+
+            }
+        }
+
+        public GamesDTO ShowGameInfo(int gameID)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand comm = conn.CreateCommand())
+            {
+                conn.Open();
+                comm.CommandText = "select * from Games where GameID=" + gameID;
+                SqlDataReader reader = comm.ExecuteReader();
+
+                GamesDTO games = new GamesDTO();
+
+                games.GameID = (int)reader["GameID"];
+                games.Title = reader["Title"].ToString();
+                games.DevCompany = reader["DevCompany"].ToString();
+                games.RelizeDate = (DateTime)reader["RelizeDate"];
+                games.Price = (Decimal)reader["Price"];
+                conn.Close();
+                return games;
+            }
+        }
+    }
+}
