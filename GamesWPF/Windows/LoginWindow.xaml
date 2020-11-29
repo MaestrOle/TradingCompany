@@ -1,0 +1,22 @@
+﻿<Window x:Class="GamesWPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesWPF"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Login" Height="450" Width="600">
+    <Grid x:Name="LoginWindow" Background="LightSkyBlue">
+        <Border MinWidth="400" Margin="15" VerticalAlignment="Center" Padding="50" MaxWidth="540" Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Aquamarine"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBox x:Name="LogEmail" materialDesign:HintAssist.Hint ="Type your Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="LogPass" materialDesign:HintAssist.Hint ="Type your Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="Login" Click="Login_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

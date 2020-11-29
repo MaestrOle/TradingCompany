@@ -1,0 +1,27 @@
+﻿<Window x:Class="GamesWPF.CreateCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamesWPF"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="CreateCustomer" Height="600" Width="600">
+    <Grid x:Name="NewCustomer" Background="LightSeaGreen">
+        <Border MinWidth="400" Margin="15" VerticalAlignment="Center" Padding="30" MaxWidth="540" Background="White">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30" Color="Aquamarine"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="CreateNewCustomer" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <TextBox x:Name="FN" materialDesign:HintAssist.Hint="FirstName" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="LN" materialDesign:HintAssist.Hint="LastName" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="YB" materialDesign:HintAssist.Hint="YearOfBirth" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="E" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox x:Name="Pass" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox x:Name="Pass2" materialDesign:HintAssist.Hint="RepitPassword" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <Button Content="CreateCustomer" Margin="20 15" Click="CreateCustomer_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
